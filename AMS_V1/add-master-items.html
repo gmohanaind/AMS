@@ -1,0 +1,765 @@
+﻿<style>
+        .control1 {
+            display: block;
+            width: 100%;
+            height: calc(2.25rem + 2px);
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            box-shadow: inset 0 0 0 transparent;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+        /* Vertical Tabs */
+        .vertical-tabs {
+            font-size: 15px;
+            padding: 10px;
+            color: #000;
+        }
+
+            .vertical-tabs .nav-tabs .nav-link {
+                border-radius: 0;
+                background: #007bff;
+                font-size: 16px;
+                border: 1px solid #424242;
+                color: #fff;
+                height: 38px;
+                width: 150px;
+                font-weight: 600;
+            }
+
+                .vertical-tabs .nav-tabs .nav-link.active {
+                    background-color: #fbf5f5 !important;
+                    color: #007bff;
+                }
+
+            .vertical-tabs .tab-content > .active {
+                background: #fff;
+                display: block;
+            }
+
+            .vertical-tabs .nav.nav-tabs {
+                border-bottom: 0;
+                border-right: 3px solid #000;
+                display: block;
+                float: left;
+                margin-right: 20px;
+                padding-right: 15px;
+            }
+
+            .vertical-tabs .sv-tab-panel {
+                background: #fff;
+                height: 274px;
+                padding-top: 10px;
+            }
+
+        @media only screen and (max-width: 420px) {
+            .titulo {
+                font-size: 22px;
+            }
+        }
+
+        @media only screen and (max-width: 325px) {
+            .vertical-tabs {
+                padding: 8px;
+            }
+        }
+
+        /*footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            font-size: 9px;
+        }*/
+
+        .search-form .form-group {
+            float: right !important;
+            transition: all 0.35s, border-radius 0s;
+            width: 32px;
+            height: 32px;
+            background-color: #fff;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+            border-radius: 25px;
+            border: 1px solid #ccc;
+        }
+
+            .search-form .form-group input.form-control {
+                padding-right: 20px;
+                border: 0 none;
+                background: transparent;
+                box-shadow: none;
+                display: block;
+            }
+
+                .search-form .form-group input.form-control::-webkit-input-placeholder {
+                    display: none;
+                }
+
+                .search-form .form-group input.form-control:-moz-placeholder {
+                    /* Firefox 18- */
+                    display: none;
+                }
+
+                .search-form .form-group input.form-control::-moz-placeholder {
+                    /* Firefox 19+ */
+                    display: none;
+                }
+
+                .search-form .form-group input.form-control:-ms-input-placeholder {
+                    display: none;
+                }
+
+            .search-form .form-group:hover,
+            .search-form .form-group.hover {
+                width: 100%;
+                border-radius: 4px 25px 25px 4px;
+            }
+
+            .search-form .form-group span.form-control-feedback {
+                position: absolute;
+                top: -1px;
+                right: -2px;
+                z-index: 2;
+                display: block;
+                width: 34px;
+                height: 34px;
+                line-height: 34px;
+                text-align: center;
+                color: #3596e0;
+                left: initial;
+                font-size: 14px;
+            }
+    </style>
+    <div id="mdlAddCategory" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Add Category
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                </div>
+                <form class="form-horizontal" id="frmAddCategory" name="frmAddCategory" action="#">
+                        <div class="modal-body">
+                        <input type="hidden" id="txtCategoryId" name="txtCategoryId" />
+                        <div class="form-group row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <label for="txtCategoryName" class="col-form-label"> Name <span class="text-danger">*</span></label>
+                                <input type="text" id="txtCategoryName" name="txtCategoryName" class="form-control" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <label for="txtName" class="col-form-label">Description</label>
+                                <textarea type="text" id="txtCategoryDescription" name="txtCategoryDescription" class="form-control"> </textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" id="btnCategorySave" name="btnCategorySave"></button>
+                        <button class="btn btn-light" data-dismiss="modal" id="btnCategoryClose" name="btnCategoryClose"><i class="fas fa-times"></i> Close </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Popup -->
+
+    <!-- Modal to add Sub Category -->
+    <div id="mdlAddSubCategory" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header py-2">
+                    <h5 class="modal-title">
+                        Add Sub Category
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" >
+                        &times;
+                    </button>
+                </div>
+                <form class="form-horizontal" id="frmAddSubCategory" name="frmAddSubCategory" action="#">
+                    <div class="modal-body">
+                        <input type="hidden" id="txtCategoryMappingId" name="txtCategoryMappingId" />
+                        <input type="hidden" id="txtSubCategoryId" name="txtSubCategoryId" />
+                        <div class="form-group row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <label for="txtSubCategoryName" class="col-form-label"> Name <span class="text-danger">*</span></label>
+                                <input type="text" id="txtSubCategoryName" name="txtSubCategoryName" class="form-control" required />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <label for="txtSubCategoryDescription" class="col-form-label"> Description <span class="text-danger">*</span></label>
+                                <textarea type="text" id="txtSubCategoryDescription" name="txtDescription" class="form-control"> </textarea>
+                            </div>
+                        </div>
+                       </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" id="btnSubCategorySave" name="btnSubCategorySave"></button>
+                        <button class="btn btn-light" data-dismiss="modal" id="btnSubCategoryClose" name="btnSubCategoryClose"><i class="fas fa-times"></i> Close </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Popup -->
+
+    <!--Sites Modal -->
+    <div id="mdlSites" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Add Site
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" >
+                        &times;
+                    </button>
+                </div>
+                <form class="form-horizontal" id="frmAddSites" name="frmAddSites" action="#">
+                    <div class="modal-body">
+                        <input type="hidden" id="txtSiteId" name="txSiteId" />
+                        <div class="form-group row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <label for="txtSiteName" class="col-form-label">Name <span class="text-danger">*</span></label>
+                                <input type="text" id="txtSiteName" name="txtSiteName" class="form-control" required autocomplete="off" />
+                            </div>
+                             </div>
+                        <div class="form-group row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <label for="txtCountries" class="col-sm-3 col-form-label">Country</label>
+                                <select id='txtCountries' class="form-control">
+                                    <option value="-1">Select</option>
+                                </select>
+                            </div>
+                            <div class="col-md-5">
+                                <label for="txtStates" class="col-form-label">State</label>
+                                <select id='txtStates' class="form-control">
+                                    <option value="-1" disabled selected>Select</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <label for="txtSiteAddress" class="col-form-label">Address</label>
+                                <input type="text" id="txtSiteAddress" name="txtsiteAddress" class="form-control" />
+                            </div>
+                            <div class="col-md-5">
+                                <label for="txtSiteCity" class="col-form-label">City</label>
+                                <input type="text" id="txtSiteCity" name="txtsiteCity" class="form-control" />
+                            </div>
+                         </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" id="btnSiteSave" name="btnSiteSave"></button>
+                        <button class="btn btn-light" data-dismiss="modal" id="btnSiteClose" name="btnSiteClose"><i class="fas fa-times"></i> Close </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Sites Modal -->
+
+    <!--Locations Modal -->
+    <div id="mdlLocations" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Add Location
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" >
+                    &times;
+                </button>
+            </div>
+            <form class="form-horizontal" id="frmAddLocations" name="frmAddLocations" action="#">
+                <div class="modal-body">
+                    <input type="hidden" id="txtLocationId" name="txtLocationId" />
+                    <div class="form-group row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-6">
+                            <label for="txtSiteLocation" class="col-form-label">Site <span class="text-danger">*</span></label>
+                            <select id='txtSiteLocation' class="form-control" required></select>
+                        </div>
+                       </div>
+                    <div class="form-group row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-6">
+                            <label for="txtLocationName" class="col-sm-3 col-form-label">Location <span class="text-danger">*</span></label>
+                            <input type="text" id="txtLocationName" name="txtLocationName" class="form-control" required/>
+                        </div>
+                       </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="btnLocationSave" name="btnLocationSave"></button>
+                    <button class="btn btn-light" data-dismiss="modal" id="btnLocationClose" name="btnLocationClose"><i class="fas fa-times"></i> Close </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Sites Modal -->
+
+    <!--Purchased Type Modal -->
+    <div id="mdlPurchasedType" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Add Purchased Type
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" >
+                        &times;
+                    </button>
+                </div>
+                <form class="form-horizontal" id="frmAddPurchasedType" name="frmAddPurchasedType" action="#">
+
+                    <div class="modal-body">
+                        <input type="hidden" id="txtPurchasedTypeId" name="txtPurchasedTypeId" />
+                        <div class="form-group row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-6">
+                                <label for="txtPurchasedTypeName" class="col-form-label"> Name <span class="text-danger">*</span></label>
+                                <input type="text" id="txtPurchasedTypeName" name="txtPurchasedTypeName" class="form-control" required />
+                            </div>
+                        </div>
+                     <div class="form-group row">
+                         <div class="col-md-2"></div>
+                             <div class="col-md-6">
+                                <label for="txtPurchasedTypeDescription" class="col-sm-3 col-form-label">Description</label>
+                                <textarea type="text" id="txtPurchasedTypeDescription" name="txtPurchasedTypeDescription" class="form-control" > </textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" id="btnPurchasedTypeSave" name="btnPurchasedTypeSave"></button>
+                        <button class="btn btn-light" data-dismiss="modal" id="btnPurchasedTypeClose" name="btnPurchasedClose"><i class="fas fa-times"></i> Close </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Purchased Type Modal -->
+
+    <!--Departments Modal -->
+    <div id="mdlDepartments" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content" >
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Add Department
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" >
+                        &times;
+                    </button>
+                </div>
+                <form class="form-horizontal" id="frmAddDepartments" name="frmAddDepartments" action="#">
+                    <div class="modal-body">
+                        <input type="hidden" id="txtDepartmentId" name="txtDepartmentId" />
+                        <div class="form-group row">
+                            <div class="col-md-2"></div>
+                          <div class="col-md-6">
+                                <label for="txtDepartmentName" class="col-form-label">Name <span class="text-danger">*</span></label>
+                                <input type="text" id="txtDepartmentName" name="txtDepartmentName" class="form-control" required autocomplete="off"/>
+                            </div>
+                           </div>
+                            <div class="form-group row">
+                                <div class="col-md-2"></div>
+                           <div class="col-md-6">
+                                <label for="txtDepartmentDescription" class="col-sm-3 col-form-label">Description</label>
+                                <textarea type="text" id="txtDepartmentDescription" name="txtDepartmentDescription" class="form-control"> </textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" id="btnDepartmentSave" name="btnDepartmentSave"></button>
+                        <button class="btn btn-light" data-dismiss="modal" id="btnDepartmentClose" name="btnDepartmentClose"><i class="fas fa-times"></i> Close </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Departments Modal -->
+
+    <!--Location and Department Mapping-->
+    <div id="mdlDeptLocMapping" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-md">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Map Location and Department
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" >
+                        &times;
+                    </button>
+                </div>
+                <form class="form-horizontal" id="frmAddDeptLocMapping" name="frmAddDeptLocMapping" action="#">
+                    <div class="modal-body">
+                        <input type="hidden" id="txtDeptLocMappingId" name="txtDeptLocMappingId" />
+                        <div class="form-group row">
+                            <div class="col-md-2"></div>
+                             <div class="col-md-6">
+                                <label for="txtLocations" class="col-sm-3 col-form-label">Location</label>
+                                <select id='txtLocations' class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-6">
+                                <label for="txtDepartments" class="col-sm-3 col-form-label">Departments</label>
+                                <select id='txtDepartments' class="form-control">
+                                    <option value="-1">Select departments</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" id="btnDeptLocMappingSave" name="btnDeptLocMappingSave"></button>
+                        <button class="btn btn-light" data-dismiss="modal" id="btnDeptLocMappingClose" name="btnDeptLocMappingClose"><i class="fas fa-times"></i> Close </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--Location and Department Mapping-->
+
+     <!--Vendors Modal -->
+    <div id="mdlVendors" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Add Vendors
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" >
+                        &times;
+                    </button>
+                </div>
+                <form class="form-horizontal" id="frmAddVendors" name="frmAddVendors" action="#">
+                    <div class="modal-body">
+                        <input type="hidden" id="txtVendorId" name="txtVendorId" />
+                        <div class="form-group row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-4">
+                                <label for="txtVendorName" class="col-form-label">Name <span class="text-danger">*</span></label>
+                                <input type="text" id="txtVendorName" name="txtVendorName" class="form-control" required autocomplete="off" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="txtVendorAddress" class="col-form-label">Address</label>
+                                <textarea type="text" id="txtVendorAddress" rows="1" name="txtVendorAddress" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-4">
+                                <label for="txtVendorCountry" class="col-sm-3 col-form-label">Country</label>
+                                <select id='txtVendorCountry' class="form-control">
+                                    <option value="-1">Select Country</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="txtVendorState" class="col-form-label">State</label>
+                                <select id='txtVendorState' class="form-control">
+                                    <option value="-1" disabled selected>Select State</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="txtVendorCity" class="col-form-label">City</label>
+                                <input type="text" id="txtVendorCity" name="txtVendorCity" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-4">
+                                <label for="txtVendorContactPerson" class="col-form-label">Contact Person</label>
+                                <input type="text" id="txtVendorContactPerson" name="txtVendorContactPerson" class="form-control" />
+                            </div>
+                            <div class="col-md-3">
+                                <label for="txtVendorContactNumber" class="col-form-label">Contact Number</label>
+                                <input type="text" id="txtVendorContactNumber" name="txtVendorContactNumber" class="form-control" />
+                            </div>
+                            <div class="col-md-3">
+                                <label for="txtVendorEmail" class="col-form-label">Email</label>
+                                <input type="text" id="txtVendorEmail" name="txtVendorEmail" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-4">
+                                <label for="txtVendorFax" class="col-form-label">Fax</label>
+                                <input type="text" id="txtVendorFax" name="txtVendorFax" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="txtVendorWebsite" class="col-form-label">Website URL</label>
+                                <input type="text" id="txtVendorWebsite" name="txtVendorWebsite" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" id="btnVendorSave" name="btnVendorSave"></button>
+                        <button class="btn btn-light" data-dismiss="modal" id="btnVendorClose" name="btnVendorClose"><i class="fas fa-times"></i> Close </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Vendors Modal -->
+
+    <!--View Vendors Modal -->
+    <div id="mdlViewVendors" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content" style="margin-top:10%;">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="color:#fff;font-weight:600;">
+                        View Vendor
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                </div>
+                <form class="form-horizontal" id="frmViewVendors" name="frmViewVendors" action="#">
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <label for="txtVendorName_view" class="col-form-label">Name : </label>
+                                <span id="txtVendorName_view"></span>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="txtVendorAddress" class="col-form-label">Address : </label>
+                                <span id="txtVendorAddress_view"></span>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="txtVendorCity" class="col-form-label">City : </label>
+                                <span id="txtVendorCity_view"></span>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="txtVendorCountry" class="col-form-label">Country : </label>
+                                <span id="txtVendorCountry_view"></span>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="txtVendorState" class="col-form-label">State : </label>
+                                <span id="txtVendorState_view"></span>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="txtVendorContactPerson" class="col-form-label">Contact Person :</label>
+                                <span id="txtVendorContactPerson_view"></span>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="txtVendorContactNumber" class="col-form-label">Contact Number :</label>
+                                <span id="txtVendorContactNumber_view"></span>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="txtVendorEmail" class="col-form-label">Email : </label>
+                                <span id="txtVendorEmail_view"></span>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="txtVendorFax" class="col-form-label">Fax : </label>
+                                <span id="txtVendorFax_view"></span>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="txtVendorWebsite" class="col-form-label">Website URL : </label>
+                                <span id="txtVendorWebsite_view"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-light" data-dismiss="modal" id="btnVendorViewClose" name="btnVendorViewClose"><i class="fas fa-times"></i> Close </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Vendors Modal -->
+
+    <!--Insurance Modal -->
+    <div id="mdlInsurance" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content" style="margin-top:10%;">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="color:#fff;font-weight:600;">
+                        Add Insurance
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                </div>
+                <form class="form-horizontal" id="frmAddInsurance" name="frmAddInsurance" action="#">
+                    <div class="modal-body">
+                        <input type="hidden" id="txtInsuranceId" name="txtInsuranceId" />
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <label for="txtPolicyNumber" class="col-form-label">Policy # <span class="text-danger">*</span></label>
+                                <input type="text" id="txtPolicyNumber" name="txtPolicyNumber" class="form-control" required autocomplete="off"/>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="txtPolicyName" class="col-form-label">Policy name <span class="text-danger">*</span></label>
+                                <input type="text" id="txtPolicyName" name="txtPolicyName" class="form-control" required autocomplete="off" />
+                            </div>
+                            <div class="col-md-4">
+                                <label for="txtInsuranceCompany" class="col-form-label">Company name <span class="text-danger">*</span></label>
+                                <input type="text" id="txtInsuranceCompany" name="txtInsuranceCompany" class="form-control" required autocomplete="off"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <label for="txtPolicyStartDate" class="col-form-label">Start date <span class="text-danger">*</span></label>
+                                <input type="date" id="txtPolicyStartDate" name="txtPolicyStartDate" class="form-control" required autocomplete="off"/>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="txtPolicyEndDate" class="col-form-label">End date <span class="text-danger">*</span></label>
+                                <input type="date" id="txtPolicyEndDate" name="txtPolicyEndDate" class="form-control" required autocomplete="off"/>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="txtPolicyCoverageAmount" class="col-form-label">Coverage amount <span class="text-danger">*</span></label>
+                                <input type="number" id="txtPolicyCoverageAmount" name="txtPolicyCoverageAmount" class="form-control" step="0.01" required autocomplete="off"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <label for="txtPolicyPremiumAmount" class="col-form-label">Premium amount <span class="text-danger">*</span></label>
+                                <input type="number" id="txtPolicyPremiumAmount" name="txtPolicyPremiumAmount" class="form-control" step="0.01" required autocomplete="off"/>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="txtPolicyContactPerson" class="col-form-label">Contact person</label>
+                                <input type="text" id="txtPolicyContactPerson" name="txtPolicyContactPerson" class="form-control" autocomplete="off"/>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="txtPolicyContactNumber" class="col-form-label">Contact number</label>
+                                <input type="text" id="txtPolicyContactNumber" name="txtPolicyContactNumber" class="form-control" autocomplete="off"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <label for="txtPolicyContactEmail" class="col-form-label">Contact email</label>
+                                <input type="text" id="txtPolicyContactEmail" name="txtPolicyContactEmail" class="form-control" autocomplete="off"/>
+                            </div>
+                            <div class="col-md-8">
+                                <label for="txtPolicyDescription" class="col-form-label">Description</label>
+                                <input type="text" id="txtPolicyDescription" name="txtPolicyDescription" class="form-control" autocomplete="off"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" id="btnInsuranceSave" name="btnInsuranceSave"></button>
+                        <button class="btn btn-light" data-dismiss="modal" id="btnInsuranceClose" name="btnInsuranceClose"> <i class="fas fa-times"></i>Close </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Insurance Modal -->
+
+    <!--View Insurance Modal -->
+    <div id="mdlViewInsurance" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content" style="margin-top:10%;">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="color:#fff;font-weight:600;">
+                        View Insurance
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                </div>
+                <form class="form-horizontal" id="frmViewInsurance" name="frmViewInsurance" action="#">
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <label for="txtPolicyNumber_view" class="col-form-label">Policy # </label>
+                                <p id="txtPolicyNumber_view"></p>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="txtPolicyName" class="col-form-label">Policy name </label>
+                                <p id="txtPolicyName_view"></p>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="txtInsuranceCompany" class="col-form-label">Company name </label>
+                                <p id="txtInsuranceCompany_view"></p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <label for="txtPolicyStartDate" class="col-form-label">Start date </label>
+                                <p id="txtPolicyStartDate_view"></p>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="txtPolicyEndDate" class="col-form-label">End date </label>
+                                <p id="txtPolicyEndDate_view"></p>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="txtPolicyCoverageAmount" class="col-form-label">Coverage amount </label>
+                                <p id="txtPolicyCoverageAmount_view"></p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <label for="txtPolicyPremiumAmount" class="col-form-label">Premium amount </label>
+                                <p id="txtPolicyPremiumAmount_view"></p>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="txtPolicyContactPerson" class="col-form-label">Contact person</label>
+                                <p id="txtPolicyContactPerson_view"></p>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="txtPolicyContactNumber" class="col-form-label">Contact number</label>
+                                <p id="txtPolicyContactNumber_view"></p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <label for="txtPolicyContactEmail_view" class="col-form-label">Contact email</label>
+                                <p id="txtPolicyContactEmail_view"></p>
+                            </div>
+                            <div class="col-md-8">
+                                <label for="txtPolicyDescription_view" class="col-form-label">Description</label>
+                                <p id="txtPolicyDescription_view"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-light" data-dismiss="modal" id="btnInsuranceViewClose" name="btnInsuranceViewClose"><i class="fas fa-times"></i> Close </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Insurance Modal -->
+
+
+<script>
+    // Bootstrap Modal
+    $('.sidebar-right').find('a[data-toggle="modal"]').on('click', function (e) {
+        e.preventDefault();
+        $($(this).data('target')).modal('show');
+    });
+</script>

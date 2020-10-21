@@ -1,0 +1,221 @@
+﻿<style>
+
+table.accordion-table th,
+table.accordion-table .expand {
+  color: #666666;
+  padding: 10px;
+}
+table.accordion-table th,
+table.accordion-table td {
+  width: 150px!important;
+}
+table.accordion-table .expand {
+  cursor: pointer;
+  width: 20px!important;
+}
+table.accordion-table .intable {
+  display: none;
+}
+</style>
+<div class="card-body p-0" id="divCategory"  style="display:none;">
+    <div class="row pb-2 border-bottom mb-3">
+        <div class="col-md-12 col-sm-12 text-right">
+            <button class="btn btn-primary btn-sm" data-toggle="modal" onclick="openCategoryModal(0)" title="Add new category"><i class="fas fa-plus"></i> New </button>
+        </div>
+    </div>
+    <table id="tblCategories" class="table table-bordered table-hover table-responsive d-sm-table">
+        <thead>
+            <tr>
+                <th># </th>
+                <th>Name </th>
+                <th>Description</th>
+                <th>Actions </th>
+            </tr>
+        </thead>
+        <tbody class="categoryBody"></tbody>
+    </table>
+</div>
+
+<div class="card-body p-0" id="divSubCategory" style="display:none;">
+    <table id="tblSubCategories" class="table table-bordered table-hover table-responsive d-sm-table">
+        <thead>
+            <tr>
+                <th># </th>
+                <th>Category</th>
+                <th>Sub Category </th>
+                <th>Description</th>
+                <th>Actions </th>
+            </tr>
+        </thead>
+        <tbody class="subCategoryBody"></tbody>
+    </table>
+</div>
+
+<!-- Sites -->
+<div class="card-body p-0" id="divSites" style="display:none;">
+    <div class="row pb-2 border-bottom mb-3">
+        <div class="col-md-12 col-sm-12 text-right">
+            <button class="btn btn-primary btn-sm" data-toggle="modal" onclick="openSitesModal(0)" title="Add new site"><i class="fas fa-plus"></i> New </button>
+        </div>
+    </div>
+    <table id="tblSites" class="table table-bordered table-hover table-responsive d-sm-table">
+        <thead>
+            <tr>
+                <th># </th>
+                <th>Name </th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Country </th>
+                <th>Actions </th>
+            </tr>
+        </thead>
+        <tbody class="sitesBody"></tbody>
+    </table>
+</div>
+<!-- Sites -->
+
+<!-- Locations -->
+<div class="card-body p-0" id="divLocations" style="display:none;">
+    <div class="row pb-2 border-bottom mb-3">
+        <div class="col-md-12 col-sm-12 text-right">
+            <button class="btn btn-primary btn-sm" data-toggle="modal" onclick="openLocationsModal(0)" title="Add new location"><i class="fas fa-plus"></i> New </button>
+        </div>
+    </div>
+    <table id="tblLocations" class="table table-bordered table-hover table-responsive d-sm-table">
+        <thead>
+            <tr>
+                <th># </th>
+                <th>Name </th>
+                <th>Site</th>
+                <th>Actions </th>
+            </tr>
+        </thead>
+        <tbody class="locationsBody"></tbody>
+    </table>
+</div>
+<!-- Locations -->
+
+<!-- Purschased Types -->
+<div class="card-body p-0" id="divPurschasedTypes" style="display:none;">
+    <div class="row pb-2 border-bottom mb-3">
+        <div class="col-md-12 col-sm-12 text-right">
+            <button class="btn btn-primary  btn-sm" data-toggle="modal" onclick="openPurchasedTypeModal(0)" title="Add new purchase type"><i class="fas fa-plus"></i> New </button>
+        </div>
+    </div>
+    <table id="tblPurchasedTypes" class="table table-bordered table-hover table-responsive d-sm-table">
+        <thead>
+            <tr>
+                <th># </th>
+                <th>Name </th>
+                <th>Description</th>
+                <th>Actions </th>
+            </tr>
+        </thead>
+        <tbody class="purchasedTypeBody"></tbody>
+    </table>
+</div>
+<!-- Purschased Types -->
+
+<!-- Departments -->
+<div class="card-body p-0" id="divDepartments" style="display:none;">
+    <div class="row pb-2 border-bottom mb-3">
+        <div class="col-md-12 col-sm-12 text-right">
+            <button class="btn btn-primary btn-sm" data-toggle="modal" onclick="openDeptModal(0)" title="Add new department"><i class="fas fa-plus"></i>  New </button>
+        </div>
+    </div>
+    <table id="tblDepartments" class="table table-bordered table-hover table-responsive d-sm-table">
+        <thead>
+            <tr>
+                <th># </th>
+                <th>Name </th>
+                <th>Description</th>
+                <th>Actions </th>
+            </tr>
+        </thead>
+        <tbody class="departmentsBody"></tbody>
+    </table>
+</div>
+<!-- Departments -->
+
+<!--Location and Department Mapping-->
+<div class="card-body p-0" id="divDeptLocMapping" style="display:none;">
+    <div class="row pb-2 border-bottom mb-3">
+        <div class="col-md-12 text-right">
+            <button class="btn btn-primary btn-sm" data-toggle="modal" onclick="openDeptLocMapping(0)" title="Mapping of Location and Department"><i class="fas fa-plus"></i>  New </button>
+        </div>
+    </div>
+    <table id="tblDeptLocMapping" class="table table-bordered table-hover table-responsive d-sm-table">
+        <thead>
+            <tr>
+                <th># </th>
+                <th>Location </th>
+                <th>Department </th>
+                <th>Actions </th>
+            </tr>
+        </thead>
+        <tbody class="deptLocMappingBody"></tbody>
+    </table>
+</div>
+<!--Location and Department Mapping-->
+
+<!-- Vendors -->
+<div class="card-body p-0" id="divVendors" style="display:none;">
+    <div class="row pb-2 border-bottom mb-3">
+        <div class="col-md-12 col-sm-12 text-right">
+            <button class="btn btn-primary btn-sm" data-toggle="modal" onclick="openVendorModal(0)" title="Add new vendor"><i class="fas fa-plus"></i>  New </button>
+        </div>
+    </div>
+    <table id="tblVendors" class="table table-bordered table-hover table-responsive d-sm-table">
+        <thead>
+            <tr>
+                <th># </th>
+                <th>Name </th>
+                <th>Address</th>
+                <th>City</th>
+                <!--<th>State / Country</th>-->
+                <th>ContactPerson </th>
+                <th>Contact Number </th>
+                <!--<th>Email </th>
+                <th>Fax Number </th>
+                <th>Website URL </th>-->
+                <th>Actions </th>
+            </tr>
+        </thead>
+        <tbody class="vendorsBody"></tbody>
+    </table>
+</div>
+<!-- Vendors -->
+
+<!-- Insurance -->
+<div class="card-body pt-0" id="divInsurance" style="display:none;">
+    <div class="row pb-2">
+        <div class="col-md-12 col-sm-12 text-right">
+            <buttton class="btn btn-primary btn-sm" data-toggle="modal" onclick="openInsuranceModal(0)" tilte="Add new insurance"><i class="fas fa-plus"></i> New </buttton>
+        </div>
+    </div>
+    <table id="tblInsurance" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Policy # </th>
+                <th>Name</th>
+                <th>Coverage Amount</th>
+                <th>Premium Amount</th>
+                <th>Start Date </th>
+                <th>End Date </th>
+                <th>Insurance Company </th>
+                <th>Actions </th>
+            </tr>
+        </thead>
+        <tbody class="insuranceBody"></tbody>
+    </table>
+</div>
+<!-- Insurance -->
+<script>
+    $(function () {
+        $('.header-level').click(function () {
+            $(this).next('.sub-level').find('table').toggle();
+        });
+    });
+</script>

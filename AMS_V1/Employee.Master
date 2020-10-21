@@ -1,0 +1,144 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Employee.master.cs" Inherits="AMS_V1.Employee" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Asset Management System </title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+
+    <!-- DataTables -->
+   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+    <!-- Custom common stylesheets -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="../dist/css/custom.css" />
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.3.7/sweetalert2.min.css">   
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+     <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.css" rel="stylesheet" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.css" />
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet" />
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-dark navbar-primary mb-0 fixed-top">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+
+            </ul>
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item pl-3">
+                     <div class="image float-left">
+                        <img src="./../dist/img/user.png" alt="User Avatar" class="img-size-32 mt-1 mr-3 img-circle">
+                    </div>
+                    <a class="nav-link float-left" runat="server">  Navdeep <i class="right fas fa-angle-down"></i></a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary sidebar-no-expand">
+            <!-- Brand Logo -->
+            <a runat="server" href="~/" class="brand-link text-center">
+                <span class="brand-text font-weight-bold"> AMS </span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="user-panel d-flex py-2">
+                    <div class="image">
+                        <img src="./../dist/img/user.png" class="img-circle mt-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block"> <b> Navdeep </b> </a>
+                         <p class="text-center small mb-0 text-muted" id="RoleName" name="RoleName" runat="server"> Asset Admin </p>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="menus-lists">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <li class="nav-item has-treeview"> <!-- menu-open -->
+                            <a runat="server" href="~/emp-asset-dashboard.aspx" class="nav-link li-dashboard active">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p> Dashboard </p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <footer class="main-footer">
+                    <small>Copyright &copy; 2020 </small>
+                </footer>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper content-min-height pt-3">
+            <!-- Content Header (Page header) -->
+            <div class="content-header d-none">
+                <div class="container-fluid">
+                    <div class="row">
+                       <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item" id="liHomeBreadCrum"><a href="/asset-dashboard.aspx">Home</a></li>
+                            <li class="breadcrumb-item active" id="liPageBreadCrum"></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="content mt-5">
+                <div class="container-fluid">
+                        <script src="Scripts/modernizr-2.6.2.js"></script>
+                        <script src="plugins/jquery/jquery.min.js"></script>
+                        <script src="plugins/bootstrap/js/popper.min.js"></script>
+                        <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+                        <script src="https//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+                       <%-- <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+                        <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+                        <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+                        <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+                        <script src="plugins/datatables/jquery.dataTables.min.js"></script>--%>
+                        <script src="dist/js/adminlte.min.js"></script>
+                        <script src="dist/js/pages/dashboard.js"></script>
+                        <script src="dist/js/demo.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.12/d3.min.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>                       
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.3.7/sweetalert2.min.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.js"></script>
+
+                        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                        </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+            <div class="p-3">
+                <h5>Title</h5>
+                <p>Sidebar content</p>
+            </div>
+        </aside>
+    </div>
+    <script>
+        $(document).ready(function () {
+            sessionStorage.setItem("LoggedInRole", "Employee");
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,669 @@
+﻿<style>
+    /*the container must be positioned relative:*/
+    .autocomplete {
+        position: relative;
+        display: inline-block;
+    }
+
+    .text-align-right {
+        text-align: right;
+    }
+
+    input {
+        border: 1px solid transparent;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+        input[type=text] {
+            width: 100%;
+        }
+
+        input[type=submit] {
+            background-color: DodgerBlue;
+            color: #fff;
+            cursor: pointer;
+        }
+
+    .autocomplete-items {
+        position: absolute;
+        border: 1px solid #d4d4d4;
+        border-bottom: none;
+        border-top: none;
+        z-index: 99;
+        /*position the autocomplete items to be the same width as the container:*/
+        top: 100%;
+        left: 0;
+        right: 0;
+    }
+
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #fff;
+            border-bottom: 1px solid #d4d4d4;
+        }
+
+            /*when hovering an item:*/
+            .autocomplete-items div:hover {
+                background-color: #e9e9e9;
+            }
+
+    /*when navigating through the items using the arrow keys:*/
+    .autocomplete-active {
+        background-color: DodgerBlue !important;
+        color: #ffffff;
+    }
+
+    .control1 {
+        display: block;
+        width: 100%;
+        height: calc(2.25rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        box-shadow: inset 0 0 0 transparent;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+    /* Vertical Tabs */
+    .vertical-tabs {
+        font-size: 15px;
+        padding: 10px;
+        color: #000;
+    }
+
+        .vertical-tabs .nav-tabs .nav-link {
+            border-radius: 0;
+            background: #007bff;
+            font-size: 16px;
+            border: 1px solid #424242;
+            color: #fff;
+            height: 38px;
+            width: 140px;
+            font-weight: 600;
+        }
+
+            .vertical-tabs .nav-tabs .nav-link.active {
+                background-color: #fbf5f5 !important;
+                color: #007bff;
+            }
+
+        .vertical-tabs .tab-content > .active {
+            background: #fff;
+            display: block;
+        }
+
+        .vertical-tabs .nav.nav-tabs {
+            border-bottom: 0;
+            border-right: 3px solid #000;
+            display: block;
+            float: left;
+            margin-right: 20px;
+            padding-right: 15px;
+        }
+
+        .vertical-tabs .sv-tab-panel {
+            background: #fff;
+            height: 274px;
+            padding-top: 10px;
+        }
+
+    @media only screen and (max-width: 420px) {
+        .titulo {
+            font-size: 22px;
+        }
+    }
+
+    @media only screen and (max-width: 325px) {
+        .vertical-tabs {
+            padding: 8px;
+        }
+    }
+
+
+    .modal-dialog {
+        max-width: 60%;
+        margin: 1.75rem auto;
+    }
+
+    .modal-header {
+        padding: 10px 14px !important;
+        font-weight: 600 !important;
+        background-color: #ccc;
+    }
+
+    .search-form .form-group {
+        float: right !important;
+        transition: all 0.35s, border-radius 0s;
+        width: 32px;
+        height: 32px;
+        background-color: #fff;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+        border-radius: 25px;
+        border: 1px solid #ccc;
+    }
+
+        .search-form .form-group input.form-control {
+            padding-right: 20px;
+            border: 0 none;
+            background: transparent;
+            box-shadow: none;
+            display: block;
+        }
+
+            .search-form .form-group input.form-control::-webkit-input-placeholder {
+                display: none;
+            }
+
+            .search-form .form-group input.form-control:-moz-placeholder {
+                /* Firefox 18- */
+                display: none;
+            }
+
+            .search-form .form-group input.form-control::-moz-placeholder {
+                /* Firefox 19+ */
+                display: none;
+            }
+
+            .search-form .form-group input.form-control:-ms-input-placeholder {
+                display: none;
+            }
+
+        .search-form .form-group:hover,
+        .search-form .form-group.hover {
+            width: 100%;
+            border-radius: 4px 25px 25px 4px;
+        }
+
+        .search-form .form-group span.form-control-feedback {
+            position: absolute;
+            top: -1px;
+            right: -2px;
+            z-index: 2;
+            display: block;
+            width: 34px;
+            height: 34px;
+            line-height: 34px;
+            text-align: center;
+            color: #3596e0;
+            left: initial;
+            font-size: 14px;
+        }
+</style>
+<div id="mdlChangeAssetStatus" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="color:#000;font-weight:600;" id="txtModalHeader"></h5>
+                <button type="button" class="close" data-dismiss="modal" style="color:#000;font-weight:600;opacity: unset;">
+                    &times;
+                </button>
+            </div>
+            <form class="form-horizontal" id="frmAssetCheckout" name="frmAssetCheckout" action="#">
+                <div class="modal-body">
+                    <div class="form-group row m-1 mt-5">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-11">
+                            <div class="form-group row">
+                                <div class="col-sm-12 pt-2">
+                                    <span class="col-sm-2"></span>
+                                    <span class="col-sm-4"><input type="radio" id="rdPerson" name="CheckoutTo" value="Person" checked="checked" /> &nbsp;&nbsp;Person</span>
+                                    <span class="col-sm-5"><input type="radio" id="rdSite" name="CheckoutTo" value="Site/Location" />  &nbsp;&nbsp;Site/Location</span>
+                                    <span class="col-sm-1"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row m-1 mt-5" id="divCheckoutPersion">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-11">
+                            <div class="form-group row">
+                                <label for="txtCheckoutPerson" class="col-form-label col-sm-3">Person <span class="text-danger">*</span></label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="txtCheckoutPerson" name="txtCheckoutPerson"
+                                           class="form-control txtCheckoutPerson" placeholder="Type 2 or more characters..." />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row m-1" id="divCheckoutSite" style="display:none;">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-11">
+                            <div class="form-group row">
+                                <label for="MainContent_ddlAssetSites" class="col-form-label col-sm-3"> Site <span class="text-danger">*</span></label>
+                                <div class="col-sm-7">
+                                    <select id="MainContent_ddlAssetSites" name="MainContent_ddlAssetSites" class="ddlAssetSites form-control"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row m-1" id="divCheckoutLocations" style="display:none;">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-11">
+                            <div class="form-group row">
+                                <label for="MainContent_ddlAssetLocations" class="col-form-label col-sm-3">Location</label>
+                                <div class="col-sm-7">
+                                    <select id="MainContent_ddlAssetLocations" name="MainContent_ddlAssetLocations" class="ddlAssetLocations form-control"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row m-1" id="divCheckoutDepartments" style="display:none;">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-11">
+                            <div class="form-group row">
+                                <label for="MainContent_ddlAssetDepartments" class="col-form-label col-sm-3">Department</label>
+                                <div class="col-sm-7">
+                                    <select id="MainContent_ddlAssetDepartments" name="MainContent_ddlAssetDepartments" class="ddlAssetDepartments form-control"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row m-1" id="divCheckoutDate">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-11">
+                            <div class="form-group row">
+                                <label for="txtDate" class="col-form-label col-sm-3">Date <span class="text-danger">*</span></label>
+                                <div class="col-sm-7">
+                                    <input type="date" id="txtDate" name="txtDate"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row m-1" id="divDueDate">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-11">
+                            <div class="form-group row">
+                                <label for="txtDueDate" class="col-form-label col-sm-3">Due Date</label>
+                                <div class="col-sm-7">
+                                    <input type="date" id="txtDueDate" name="txtDueDate"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row m-1">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-11">
+                            <div class="form-group row">
+                                <label for="txtRemarks" class="col-form-label col-sm-3">Remarks</label>
+                                <div class="col-sm-7">
+                                    <textarea class="form-control" id="txtRemarks" name="txtRemarks" rows="3"
+                                              placeholder="Description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="margin-top:10px;">
+                    <button class="btn btn-primary btnCheckout" type="button" id="btnCheckout" name="btnCheckout" onclick="changeAssetStatus()">Save</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="assetMaintenanceModel" role="dialog">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="font-weight:600;">Asset Maintenance</h5>
+                <button type="button" class="close" data-dismiss="modal" style="font-weight:600;opacity: unset;">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-body" style="padding-top:6%">
+                <div class="form-body">
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div class="form-group row m-1">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="txtTitle" class="col-form-label text-align-right col-sm-4">Title</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" id="txtTitle" name="txtTitle" class="form-control" onchange="$('#errTitle').hide();"/>
+                                            <span id="errTitle" class="text-danger" style="display:none;">Title is Required!</span>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="txtDetails" class="col-form-label text-align-right col-sm-2">Details</label>
+                                        <div class="col-sm-8">
+                                            <textarea class="form-control" id="txtDetails" maxlength="1000" name="txtDetails" rows="4"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row m-1">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="txtMaintenanceDueDate" class="col-form-label text-align-right col-sm-4">Due Date</label>
+                                        <div class="col-sm-8">
+                                            <input type="date" id="txtMaintenanceDueDate" name="txtMaintenanceDueDate" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="InHouse" class="col-form-label col-sm-6">Is In-House Maintenance</label>
+                                        <div class="col-sm-5 mt-2">
+                                            <span class="radio-inline"><input id="InHouse_True" type="radio" name="InHouse" checked="checked" value="True" onchange="showMaintenanceBy(1)"> Yes</span>
+                                            <span class="radio-inline" style="padding-left: 10px;"><input id="InHouse_False" type="radio" name="InHouse" value="False" onchange="showMaintenanceBy(0)"> No</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row m-1">
+                                <div class="col-md-6" style="display:none;" id="divDDLMaintenanceBy">
+                                    <div class="form-group row">
+                                        <label for="MainContent_ddlVendor" class="col-form-label text-align-right col-sm-4">Maintenance By</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" id="MainContent_ddlVendor" name="MainContent_ddlVendor"></select>                                           
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" id="divMaintenanceBy">
+                                    <div class="form-group row">
+                                        <label for="txtMaintenanceBy" class="col-form-label text-align-right col-sm-4">Maintenance By</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="txtMaintenanceBy" name="txtMaintenanceBy" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="ddlStatus" class="col-form-label text-align-right col-sm-2">Status</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" data-val="true" id="ddlStatus" name="ddlStatus">                                               
+                                                <option value="1">Scheduled</option>
+                                                <option value="2">In progress</option>
+                                                <option value="3">On Hold</option>
+                                                <option value="4">Cancelled</option>
+                                                <option value="5">Completed</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row m-1">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="txtDateCompleted" class="col-form-label text-align-right col-sm-4">Date Completed</label>
+                                        <div class="col-sm-8">
+                                            <input type="date" id="txtDateCompleted" name="txtDateCompleted"
+                                                   class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="txtCost" class="col-form-label text-align-right col-sm-2">Cost</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" id="txtCost" name="txtCost" class="form-control" maxlength="20"
+                                                   onkeypress="return event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row m-1">
+                                <div class="col-md-3">
+                                    <div class="form-group row">
+                                        <label for="txtCost" class="col-form-label text-align-right col-sm-8" style="padding-top: 0 !important;">Repeating</label>
+                                        <div class="col-sm-4">
+                                            <label class="radio-inline"><input id="Repeat_True" type="radio" name="Repeat" data-val="true" onchange="setRepeated(1);" checked="checked" value="True"> Yes</label>
+                                            <label class="radio-inline"><input id="Repeat_False" type="radio" name="Repeat" data-val="true" onchange="setRepeated(0);" value="False"> No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3" id="maintenanceFrequencySelectBox" style="display:block;">
+                                    <div class="form-group row">
+                                        <label for="txtCost" class="col-form-label text-align-right col-sm-6" style="padding-top: 0 !important;">Frequency</label>
+                                        <div class="col-md-6">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios1" data-id="FormDaily" data-index="1" onchange="javascript:SetFrequency(1)" checked="">
+                                                Daily
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios2" data-id="FormWeekly" data-index="2" onchange="javascript:SetFrequency(2)">
+                                                Weekly
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios3" data-id="FormMonthly" data-index="3" onchange="javascript:SetFrequency(3)">
+                                                Monthly
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios6" data-id="FormYearly" data-index="6" onchange="javascript:SetFrequency(4)">
+                                                Yearly
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" id="FormWeekly" style="display:none;margin-top: -8px !important;">
+                                    <div class="form-group row">
+                                        <label for="txtCost" class="col-form-label text-align-right col-sm-3">Recur on:</label>
+                                        <div class="col-sm-8" style="margin-top: 8px;">
+                                            <span>Every</span>
+                                            <input class="form-control" id="WeeklyRecurOn1" max="5" maxlength="1" min="1" name="WeeklyRecurOn1" type="number" value="1">
+                                            <span>week(s) on</span>
+                                            <select class="form-control" id="WeeklyRecurOn2" name="WeeklyRecurOn2">
+                                                <option selected="selected" value="1">Monday</option>
+                                                <option value="2">Tuesday</option>
+                                                <option value="3">Wednesday</option>
+                                                <option value="4">Thursday</option>
+                                                <option value="5">Friday</option>
+                                                <option value="6">Saturday</option>
+                                                <option value="0">Sunday</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" id="FormMonthly" style="display:none;margin-top: -8px !important;">
+                                    <div class="form-group row">
+                                        <label for="txtCost" class="col-form-label text-align-right col-sm-3">Recur on:</label>
+                                        <div class="col-sm-8" style="margin-top: 8px;">
+                                            <span>Every <input class="form-control" id="MonthlyRecurOn1" max="99" maxlength="2" min="0" name="MonthlyRecurOn1" type="number" value="1"></span>
+                                           
+                                            <span>month(s) on</span>
+                                            <select class="form-control" id="MonthlyRecurOn2" name="MonthlyRecurOn2">
+                                                <option selected="selected" value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                                <option value="28">28</option>
+                                                <option value="29">29</option>
+                                                <option value="30">30</option>
+                                                <option value="31">31</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" id="FormYearly" style="display:none;margin-top: -8px !important;">
+                                    <div class="form-group row">
+                                        <label for="txtCost" class="col-form-label text-align-right col-sm-3">Recur on:</label>
+                                        <div class="col-sm-8" style="margin-top: 8px;">
+                                            <span>Every</span>
+                                            <select class="form-control" id="YearlyRecurOn1" name="YearlyRecurOn1">
+                                                <option selected="selected" value="1">January</option>
+                                                <option value="2">February</option>
+                                                <option value="3">March</option>
+                                                <option value="4">April</option>
+                                                <option value="5">May</option>
+                                                <option value="6">June</option>
+                                                <option value="7">July</option>
+                                                <option value="8">August</option>
+                                                <option value="9">September</option>
+                                                <option value="10">October</option>
+                                                <option value="11">November</option>
+                                                <option value="12">December</option>
+                                            </select>
+                                            <span> on</span>
+                                            <select class="form-control" id="YearlyRecurOn2" name="YearlyRecurOn2">
+                                                <option selected="selected" value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                                <option value="28">28</option>
+                                                <option value="29">29</option>
+                                                <option value="30">30</option>
+                                                <option value="31">31</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-sm" onclick="saveAssetMaintenance()">Submit</button>
+
+                <!--<button type="button" class="btn default circle" data-dismiss="modal">Cancel</button>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="mdlAssetOtherStatus" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="width: 60%;">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="color:#000;font-weight:600;" id="hdAssetStatus"></h5>
+                <button type="button" class="close" data-dismiss="modal" style="color:#000;font-weight:600;opacity: unset;">
+                    &times;
+                </button>
+            </div>
+            <form class="form-horizontal" id="frmAssetOtherStatus" name="frmAssetOtherStatus" action="#">
+                <div class="modal-body">
+                    <div class="form-group row m-1" id="divOtherStatusDate">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5 col-sm-12">
+                            <div class="form-group row">
+                                <label for="txtStatusDate" class="col-form-label col-sm-3">Date <span class="text-danger">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="date" id="txtStatusDate" name="txtStatusDate"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6  col-sm-12">
+                            <div class="form-group row">
+                                <label for="txtStatusBy" class="col-form-label col-sm-3">By <span class="text-danger">*</span></label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="txtStatusBy" name="txtStatusBy"
+                                           class="form-control txtStatusBy" placeholder="Type 2 or more characters..." />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row m-1 mt-5" id="divOtherStatusDetails">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="txtOtherStatusDetails" class="col-form-label col-sm-3">Details</label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" id="txtOtherStatusDetails" name="txtOtherStatusDetails" rows="4"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="margin-top:10px;">
+                    <button class="btn btn-primary btnAssetOtherStatus" type="button" id="btnAssetOtherStatus" name="btnAssetOtherStatus" onclick="saveAssetOtherStatus()">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(document).on('focus', ':input', function () {
+            $(this).attr('autocomplete', 'off');
+            
+        });
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = yyyy + '-' + mm + '-' + dd;
+        document.getElementById("txtMaintenanceDueDate").setAttribute("min", today);
+        document.getElementById("txtDateCompleted").setAttribute("min", today);
+    });
+    function setStatus(statusid) {
+        sessionStorage.setItem("assetstatusid", statusid);
+    }
+   
+</script>

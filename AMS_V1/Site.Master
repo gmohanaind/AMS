@@ -1,0 +1,292 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="AMS_V1.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Asset Management System </title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+<%--    <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">--%>
+    <!-- Custom common stylesheets -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="../dist/css/custom.css" />
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.3.7/sweetalert2.min.css">   
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+     <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.css" rel="stylesheet" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.css" />
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet" />
+    <style>
+        .noti{
+            color: #fff;
+            font-size: 18px;
+            margin-top: 10px !important;
+        }
+        a:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+        .dropdown-toggle:after { content: none }
+        .btn-primary:hover {
+            color: #fff;
+           background-color: #007bff;
+            border-color: #007bff;
+        }
+        .dropdown-primary{
+            border-radius:0px !important;
+            padding:20px 10px !important;
+            border:1px solid #007bff !important;
+        }
+    </style>
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-dark navbar-primary mb-0 fixed-top">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+
+            </ul>
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-notification ">
+                    <!--Dropdown primary-->
+                    <div class="dropdown">
+
+                      <!--Trigger-->
+                      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" 
+                          data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell f-s-16"></i>
+                          <sup><span class="badge badge-warning" style="border-radius: 50%;" id="spnCompletedCount">1</span></sup>
+                      </button>
+
+                      <!--Menu-->
+                      <div class="dropdown-menu dropdown-primary">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
+                    </div>
+                    <!--/Dropdown primary-->
+
+
+
+                    <div>
+                   <%-- <a href="#" data-target="#Notifications-list" class="noti" title="Alert(s)" >
+                        <i class="fa fa-bell f-s-16 mt-3"></i>
+                        <sup><span class="badge badge-warning" style="border-radius: 50%;" id="spnCompletedCount">1</span></sup>
+                    </a>--%>
+                   
+                    </div>
+                </li>
+                <li class="nav-item pl-3">
+                    <%-- <div class="image float-left">
+                        <img src="./../dist/img/user.png" alt="User Avatar" class="img-size-32 mt-1 mr-3 img-circle">
+                    </div>--%>
+                    <a href="login.aspx" class="btn btn-danger btn-sm">Logout</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary sidebar-no-expand">
+            <!-- Brand Logo -->
+            <a runat="server" href="~/" class="brand-link text-center">
+                <span class="brand-text font-weight-bold"> AMS </span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="user-panel d-flex py-2">
+                    <div class="image">
+                        <img src="./../dist/img/user.png" class="img-circle mt-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block"> <b> Navdeep </b> </a>
+                         <p class="text-center small mb-0 text-muted" id="RoleName" name="RoleName" runat="server"> Asset Admin </p>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="menus-lists">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <li class="nav-item has-treeview"> <!-- menu-open -->
+                            <a runat="server" href="~/asset-dashboard.aspx" class="nav-link li-dashboard active">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p> Dashboard </p>
+                            </a>
+                        </li>
+                       <li class="nav-item">
+                           <a href="~/view-assets.aspx" runat="server" class="nav-link li-asset"  onclick="setAssetSearch()">
+                                <i class="nav-icon fas fa-shopping-basket"></i>
+                                <p> Assets </p>
+                            </a>
+                        </li>
+                       
+                          <li class="nav-item">
+                           <a href="~/change-asset-status.aspx" runat="server" class="nav-link li-change-asset-status">
+                                <i class="nav-icon fa fa-tasks"></i>
+                                <p> Move Assets </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                           <a href="~/global-settings.aspx" runat="server" class="nav-link li-global-settings">
+                                <i class="nav-icon fa fa-cogs"></i>
+                                <p> Global Settings </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                           <a href="~/asset-inventory-check.aspx" runat="server" class="nav-link li-asset-inventory-check">
+                                <i class="nav-icon fa fa-check-circle"></i>
+                                <p> Assets Inventory Check </p>
+                            </a>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-cubes"></i>
+                                <p> Master <i class="right fas fa-angle-left"></i> </p>
+                            </a>
+                            <ul class="nav nav-treeview ml-3">
+                                <li class="nav-item"  id="liCategory" onclick="callPage('category')">
+                                    <a href="#" class="nav-link">
+                                        <i class="fa fa-capsules nav-icon"></i>
+                                        <p class="inlist"> Categories </p>
+                                    </a>
+                                </li>
+                                 <li class="nav-item" id="liSite" onclick="callPage('sites')">
+                                    <a href="#" class="nav-link">
+                                        <i class="fa fa-sitemap nav-icon"></i>
+                                        <p class="inlist"> Sites </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item" id="liLocation" onclick="callPage('locations')">
+                                    <a href="#" class="nav-link">
+                                        <i class="fa fa-location-arrow nav-icon"></i>
+                                        <p class="inlist"> Locations </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item" id="liDepartment" onclick="callPage('departments')">
+                                    <a href="#" class="nav-link">
+                                        <i class="fa fa-users-cog nav-icon"></i>
+                                        <p class="inlist"> Departments </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item"  id="liPurchasedType" onclick="callPage('purchasedtypes')">
+                                    <a href="#" class="nav-link">
+                                        <i class="fa fa-list nav-icon"></i>
+                                        <p class="inlist"> Purchased Types </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item" id="liVendors" onclick="callPage('vendors')">
+                                    <a href="#" class="nav-link">
+                                        <i class="fas fa-store nav-icon"></i>
+                                        <p> Vendors </p>
+                                    </a>
+                                </li> 
+                               <li class="nav-item"  id="liInsurance" onclick="callPage('insurance')">
+                                    <a href="#" class="nav-link">
+                                        <i class="fas fa-medkit nav-icon"></i>
+                                        <p> Insurance </p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        
+                        <li class="nav-item">
+                           <a href="~/view-asset-reports.aspx" runat="server" class="nav-link li-asset-report">
+                                <i class="nav-icon far fa-chart-bar"></i>
+                                <p> Reports </p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+                <footer class="main-footer">
+                    <small>Copyright &copy; 2020 </small>
+                </footer>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper content-min-height pt-3">
+            <!-- Content Header (Page header) -->
+            <div class="content-header d-none">
+                <div class="container-fluid">
+                    <div class="row">
+                       <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item" id="liHomeBreadCrum"><a href="/asset-dashboard.aspx">Home</a></li>
+                            <li class="breadcrumb-item active" id="liPageBreadCrum"></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="content mt-5">
+                <div class="container-fluid">
+                        <script src="Scripts/modernizr-2.6.2.js"></script>
+                        <script src="plugins/jquery/jquery.min.js"></script>
+                        <script src="plugins/bootstrap/js/popper.min.js"></script>
+                        <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+                        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+                    
+                      <%--  <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+                        <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+                        <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+                        <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+                        <script src="plugins/datatables/jquery.dataTables.min.js"></script>--%>
+                        <script src="dist/js/adminlte.min.js"></script>
+                        <script src="dist/js/pages/dashboard.js"></script>
+                        <script src="dist/js/demo.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.12/d3.min.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>                       
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.3.7/sweetalert2.min.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.js"></script>
+
+                        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                        </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+            <div class="p-3">
+                <h5>Title</h5>
+                <p>Sidebar content</p>
+            </div>
+        </aside>
+    </div>
+    <script>
+       $(document).ready(function () {
+            sessionStorage.setItem("LoggedInRole", "Asset Admin");
+       });
+       function setAssetSearch()
+       {
+           sessionStorage.setItem("SearchStatusId","");
+            sessionStorage.setItem("SearchText", "");
+       }
+       function callPage(value)
+       {
+            window.location.href = "add-master-items.aspx?view=" + value;
+       }
+    </script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\ApplicationInsights.config
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\roslyn\csc.exe
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\roslyn\System.Collections.Immutable.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\roslyn\System.Reflection.Metadata.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\roslyn\vbc.exe
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\roslyn\VBCSCompiler.exe
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\roslyn\VBCSCompiler.exe.config
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\AMS_V1.dll.config
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\AMS_V1.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\AMS_V1.pdb
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Antlr3.Runtime.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\AspNet.ScriptManager.bootstrap.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\AspNet.ScriptManager.jQuery.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\EntityFramework.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\EntityFramework.SqlServer.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.AI.Agent.Intercept.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.AI.DependencyCollector.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.AI.PerfCounterCollector.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.AI.ServerTelemetryChannel.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.AI.Web.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.AI.WindowsServer.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.ApplicationInsights.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.AspNet.FriendlyUrls.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.AspNet.Identity.Core.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.AspNet.Identity.Owin.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.Owin.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.Owin.Host.SystemWeb.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.Owin.Security.Cookies.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.Owin.Security.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.Owin.Security.Facebook.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.Owin.Security.Google.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.Owin.Security.OAuth.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.Owin.Security.Twitter.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.ScriptManager.MSAjax.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.ScriptManager.WebForms.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.Web.Infrastructure.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Newtonsoft.Json.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Owin.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\System.Web.Optimization.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\System.Web.Providers.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\WebGrease.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.AI.DependencyCollector.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.AI.ServerTelemetryChannel.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.AI.Web.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.AI.WindowsServer.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.ApplicationInsights.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\System.Web.Optimization.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Antlr3.Runtime.pdb
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Newtonsoft.Json.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.AspNet.FriendlyUrls.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\EntityFramework.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\EntityFramework.SqlServer.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.AspNet.Identity.Core.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.AspNet.Identity.Owin.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\System.Web.Providers.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.Owin.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.Owin.Host.SystemWeb.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.Owin.Security.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.Owin.Security.Facebook.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.Owin.Security.Cookies.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.Owin.Security.Google.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.Owin.Security.Twitter.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\bin\Microsoft.Owin.Security.OAuth.xml
+F:\LEARNING\Project\AMS_V1\AMS_V1\obj\Debug\AMS_V1.csprojResolveAssemblyReference.cache
+F:\LEARNING\Project\AMS_V1\AMS_V1\obj\Debug\AMS_V1.dll
+F:\LEARNING\Project\AMS_V1\AMS_V1\obj\Debug\AMS_V1.pdb
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\ApplicationInsights.config
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\roslyn\csc.exe
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\roslyn\Microsoft.CodeAnalysis.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\roslyn\Microsoft.CSharp.Core.targets
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\roslyn\Microsoft.VisualBasic.Core.targets
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\roslyn\System.Collections.Immutable.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\roslyn\System.Reflection.Metadata.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\roslyn\vbc.exe
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\roslyn\VBCSCompiler.exe
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\roslyn\VBCSCompiler.exe.config
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\AMS_V1.dll.config
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\AMS_V1.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\AMS_V1.pdb
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\AjaxControlToolkit.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Antlr3.Runtime.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\AspNet.ScriptManager.bootstrap.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\AspNet.ScriptManager.jQuery.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\EntityFramework.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\EntityFramework.SqlServer.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.AI.Agent.Intercept.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.AI.DependencyCollector.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.AI.PerfCounterCollector.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.AI.ServerTelemetryChannel.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.AI.Web.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.AI.WindowsServer.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.ApplicationInsights.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.AspNet.FriendlyUrls.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.AspNet.Identity.Core.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.AspNet.Identity.Owin.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.Owin.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.Owin.Host.SystemWeb.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.Owin.Security.Cookies.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.Owin.Security.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.Owin.Security.Facebook.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.Owin.Security.Google.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.Owin.Security.OAuth.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.Owin.Security.Twitter.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.ScriptManager.MSAjax.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.ScriptManager.WebForms.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.Web.Infrastructure.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Newtonsoft.Json.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Owin.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\System.Web.Optimization.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\System.Web.Providers.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\WebGrease.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.AI.DependencyCollector.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.AI.ServerTelemetryChannel.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.AI.Web.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.AI.WindowsServer.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.ApplicationInsights.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\System.Web.Optimization.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Antlr3.Runtime.pdb
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Newtonsoft.Json.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.AspNet.FriendlyUrls.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\EntityFramework.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\EntityFramework.SqlServer.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.AspNet.Identity.Core.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.AspNet.Identity.Owin.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\System.Web.Providers.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.Owin.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.Owin.Host.SystemWeb.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.Owin.Security.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.Owin.Security.Facebook.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.Owin.Security.Cookies.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.Owin.Security.Google.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.Owin.Security.Twitter.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\bin\Microsoft.Owin.Security.OAuth.xml
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\obj\Debug\AMS_V1.dll
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\obj\Debug\AMS_V1.pdb
+G:\Asset Management System\Development\AMS_V1.0\AMS_V1\obj\Debug\AMS_V1.csprojResolveAssemblyReference.cache
